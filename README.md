@@ -1,2 +1,2 @@
-Minimal react yelp clone.
+# yelp clone
 
