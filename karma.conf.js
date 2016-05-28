@@ -1,3 +1,4 @@
+var argv = require('yargs').argv;
 var path = require('path');
 var webpackConfig = require('./webpack.config');
 
@@ -11,7 +12,7 @@ module.exports = function(config) {
 
         preprocessors: {
             // add webpack as preprocessor
-            'tests.webpack.js': ['webpack', 'sourcemap'],
+            'tests.webpack.js': ['webpack', 'sourcemap']
         },
 
         webpack: webpackConfig,
@@ -32,6 +33,8 @@ module.exports = function(config) {
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
-        browsers: ['PhantomJS']
-    })
+        //browsers: ['chrome'],
+        browsers: ['PhantomJS'],
+        singleRun: !argv.watch
+    });
 };
