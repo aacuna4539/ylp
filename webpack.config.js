@@ -1,3 +1,4 @@
+const env = process.env;
 const NODE_ENV = process.env.NODE_ENV;
 const dotenv = require('dotenv');
 
@@ -44,6 +45,7 @@ const environmentEnv = dotenv.config({
 const envVariables =
     Object.assign({}, dotEnvVars, environmentEnv);
 
+// Converts keys to be surrounded with __
 const defines =
     Object.keys(envVariables)
         .reduce((memo, key) => {
@@ -79,8 +81,8 @@ const newloader = Object.assign({}, cssloader, {
 });
 
 config.module.loaders.push(newloader);
-cssloader.test = new RegExp(`[^module]${cssloader.test.source}`)
-cssloader.loader = newloader.loader
+cssloader.test = new RegExp(`[^module]${cssloader.test.source}`);
+cssloader.loader = newloader.loader;
 
 config.module.loaders.push({
     test: /\.css$/,
